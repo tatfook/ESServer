@@ -8,4 +8,5 @@ WORKDIR /code
 # ARG BUILD_ENV
 RUN npm install
 # RUN NODE_ENV=${BUILD_ENV} TZ=Asia/Shanghai yarn build
-RUN npm run dev
+# RUN npm run dev
+CMD npm run dev
