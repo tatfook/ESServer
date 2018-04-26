@@ -1,5 +1,5 @@
 ## ESServer 部署
-> nuxt-vue-koa2 项目
+> nuxt-vue-koa2 项目  
 > client vue框架客户端根目录
 > server koa2框架服务端根目录
 
