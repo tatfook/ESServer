@@ -4,8 +4,6 @@ import config from "./.config.js";
 const defaultConfig = {
 	...commonConfig,
 
-	gitlabToken: "18ayouuEsKRo_yM1P5eF",
-
 	secret: "keepwork",
 
 	database: {
@@ -23,7 +21,7 @@ const defaultConfig = {
 
 
 	gitlab: {
-		token: "18ayouuEsKRo_yM1P5eF",
+		token: "",
 	},
 
 	qiniu: {
