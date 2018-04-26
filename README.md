@@ -1,6 +1,6 @@
 ## ESServer 部署
-> nuxt-vue-koa2 项目
-> client vue框架客户端根目录
+> nuxt-vue-koa2 项目  
+> client vue框架客户端根目录  
 > server koa2框架服务端根目录
 
 1. git clone git@github.com:tatfook/ESServer.git  # 或 git clone git@github.com:wxaxiaoyao/note.git
