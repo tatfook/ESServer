@@ -18,11 +18,11 @@ const defaultConfig = {
 	},
 
 	ESService: {
-		baseURL: "http://10.28.18.2:10004/api/v0/",
+		baseURL: "http://es.keepwork.com/api/v0/",
 	},
 
 	QiniuService: {
-		baseURL: "http://10.28.18.2:10004/api/v0/",
+		baseURL: "http://es.keepwork.com/api/v0/",
 	},
 
 	elasticsearch: {
