@@ -1,6 +1,10 @@
 module.exports = {
 	srcDir: "client/",
 
+	env: {
+		ENV: process.env.ENV,
+	},
+
 	/*
   	** Headers of the page
   	*/

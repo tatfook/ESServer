@@ -1,9 +1,9 @@
+import _ from "lodash";
+
 import commonConfig from "../common/config.js";
 import config from "./.config.js";
 
 const defaultConfig = {
-	...commonConfig,
-
 	secret: "keepwork",
 
 	database: {
@@ -12,7 +12,7 @@ const defaultConfig = {
 		type: "mysql",
 		database: "keepwork", // 数据库名
 		username: "wuxiangan",
-		password: "xxxxxx", 
+		password: "", 
 	},
 
 	elasticsearch: {
@@ -31,20 +31,21 @@ const defaultConfig = {
 }
 
 const productionConfig = {
-	...defaultConfig,
-	
-	...config,
 }
 
 const developmentConfig = {
-	...defaultConfig,
+}
 
-	...config,
+const localConfig = {
+
 }
 
 const configs = {
-	"production": productionConfig,
-	"development": developmentConfig,
+	"local": _.merge(commonConfig, defaultConfig, localConfig, config),
+	"production": _.merge(commonConfig, defaultConfig, productionConfig, config),
+	"development": _.merge(commonConfig, defaultConfig, developmentConfig, config),
 }
 
-export default configs[process.env.NODE_ENV];
+console.log(process.env.ENV);
+
+export default configs[process.env.ENV];
