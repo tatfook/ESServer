@@ -42,7 +42,7 @@ const defaultConfig = {
 
 	# gitlab 管理员访问token  存在拉取任意用户文件操作
 	gitlab: {
-		token: "18ayouuEsKRo_yM1P5eF",
+		token: "xxxxx",
 	},
 	
 	# qiniu 相关配置
