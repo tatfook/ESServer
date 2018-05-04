@@ -112,7 +112,7 @@ Gitlab.prototype.webhook = async function(ctx) {
 	
 	// 取出文件列表
 	const filelist = [];
-	const dataFileReg = /^__data__\/.+\.yaml$/;
+	const dataFileReg = /^__data__\/.+\.yml$/;
 	const filelistAddItem = (path, oper, action) => {
 		if (!dataFileReg.test(path)) return;
 		const key = getKeyByPath(path);
