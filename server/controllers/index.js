@@ -6,11 +6,13 @@ import {ERR_UNATUH} from "../common/error.js";
 import code from "./code.js";
 import gitlab from "./gitlab.js"; 
 import qiniu from "./qiniu.js";
+import elasticsearch from "./elasticsearch.js";
 
 export const controllers = {
 	code,
 	gitlab,
 	qiniu,
+	elasticsearch,
 }
 
 export const registerControllerRouter = function(router) {
