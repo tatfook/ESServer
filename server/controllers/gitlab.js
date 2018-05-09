@@ -51,7 +51,7 @@ export const Gitlab = function() {
 Gitlab.prototype.getGitFileData = function(content) {
 	try {
 		//return Json.parse(content);
-		return yaml.safeLoad(content, {json:true});
+		return yaml.load(content, {json:true});
 	} catch(e) {
 		console.log(e);
 	}
@@ -71,7 +71,6 @@ Gitlab.prototype.formatESData = function(data, tablename) {
 Gitlab.prototype.submitESData = async function(item) {
 	const data = item.data || {};
 	const action = item.action;
-	const path = item.path;
 	const key = item.key;
 	if (!key){
 		console.log("无效数据");
@@ -149,17 +148,27 @@ Gitlab.prototype.webhook = async function(ctx) {
 	return ;
 }
 
-// 提供接口 写git es
-Gitlab.prototype.gitlab = async (ctx) => {
+// 主动提交git数据
+Gitlab.prototype.submitGitData = async function(ctx) {
+	console.log('--------------')
+	const self = this;
 	const params = ctx.request.body;
+	
+	if (!params.path || !params.action || !params.content) {
+		return;
+	}
 
-	if (!params.git || !params.git.projectId || !params.path || !params.data) return ERR.ERR_PARAMS;
+	const key = getKeyByPath(params.path);
+	if (!key) return;
+	const data = self.getGitFileData(params.content) || {};
+	const action = params.action == "removed" ? "delete" : "index";
+	await self.submitESData({
+		key,
+		data,
+		action,
+	});
 
-	const gitcfg = params.git;
-	gitcfg.token = gitcfg.token || config.gitlabToken;
-	const git = gitlabFactory(gitcfg);
-
-	git.upsertFile();
+	return;
 }
 
 Gitlab.prototype.getRoutes = function() {
@@ -169,6 +178,18 @@ Gitlab.prototype.getRoutes = function() {
 		path: prefix + "/webhook",
 		method: "post",
 		action: "webhook",
+	},
+	{
+		path: prefix + "/submitGitData",
+		method: "post",
+		action: "submitGitData",
+		validate: {
+			body: {
+				path: joi.string().required(),
+				action: joi.string().required(),
+				content: joi.string().required(),
+			},
+		}
 	},
 	];
 
